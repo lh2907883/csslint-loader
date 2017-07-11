@@ -6,14 +6,17 @@ var CSSLint = require("csslint").CSSLint;
  */
 module.exports = function(source, map) {
     var query = loaderUtils.getOptions(this) || {
-        // 'box-model': 1,
-        'display-property-grouping': 1,
-        'duplicate-properties': 1,
-        'empty-rules': 1,
-        'known-properties': 1,
-        'ids': 1,
-        'multi-rules-newline': 1,
-        'rule-name': 1
+        force: false,
+        rules: {
+            // 'box-model': 1,
+            'display-property-grouping': 1,
+            'duplicate-properties': 1,
+            'empty-rules': 1,
+            'known-properties': 1,
+            'ids': 1,
+            'multi-rules-newline': 1,
+            'rule-name': 1
+        }
     };
     //对source进行解析
     var results = CSSLint.verify(source, query.rules);
