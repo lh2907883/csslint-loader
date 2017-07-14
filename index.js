@@ -4,6 +4,7 @@ var CSSLint = require("csslint").CSSLint;
  * source为原文件的字符串格式
  */
 module.exports = function(source, map) {
+    this.cacheable();
     var query = loaderUtils.getOptions(this);
     if(!query){
         query = this._compiler.options.csslint || {
@@ -36,7 +37,7 @@ module.exports = function(source, map) {
     if (results.messages.length > 0) {
         var strError = `In ${this.resourcePath}\n`;
         strError += results.messages.map(item => {
-            return `    ${item.message} line:${item.line}, @ col:${item.col}, ${item.evidence}\n`;
+            return `    ${item.message} @ line:${item.line}, col:${item.col}, ${item.evidence}\n`;
         }).join('');
         if (query.force === true) {
             this.emitError(strError);
