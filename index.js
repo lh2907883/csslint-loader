@@ -3,9 +3,10 @@ var CSSLint = require("csslint").CSSLint;
 /**
  * source为原文件的字符串格式
  */
-module.exports = function(source, map) {
+module.exports = function(source, map) {    
     this.cacheable();
-    var option = this._compiler.options.csslint || {
+    // var option = this._compiler.options.csslint || {
+    var option = loaderUtils.getOptions(this) || {
         force: false,
         rules: {
             // 'box-model': 1,
